@@ -11,6 +11,7 @@
 		"start": "nest start",
 		"start:dev": "nest start --watch",
 		"start:dev:batch": "nest start nestar-batch --watch",
+		"train": "ts-node train.ts",
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "NODE_ENV=production node dist/apps/nestar-api/main.js",
 		"start:prod:batch": "node dist/apps/nestar-batch   /main",
