@@ -1,8 +1,8 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { MemberService } from './member.service';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { InternalServerErrorException, UsePipes, ValidationPipe } from '@nestjs/common';
 import { LoginInput, MemberInput } from '../../libs/dto/member/member.input';
 import { Member } from '../../libs/dto/member/member';
+import { MemberService } from './member.service';
 
 @Resolver()
 export class MemberResolver {
@@ -30,17 +30,5 @@ export class MemberResolver {
 			console.log('Error, signup:', err);
 			throw new InternalServerErrorException(err);
 		}
-	}
-
-	@Mutation(() => String)
-	public async updateMember(): Promise<string> {
-		console.log('Mutation: updateMember');
-		return this.memberService.updateMember();
-	}
-
-	@Query(() => String)
-	public async getMember(): Promise<string> {
-		console.log('Query: getMember');
-		return this.memberService.getMember();
 	}
 }
