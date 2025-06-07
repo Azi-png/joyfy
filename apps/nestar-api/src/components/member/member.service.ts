@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 
 import { LoginInput, MemberInput } from '../../libs/dto/member/member.input';
-import { Message } from '../../libs/config';
-import { MemberStatus } from '../../libs/enums/member.enum';
+
 import { Member } from '../../libs/dto/member/member';
+import { MemberStatus } from '../../libs/enums/member.enum';
+import { Message } from '../../libs/config';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class MemberService {
@@ -22,7 +23,6 @@ export class MemberService {
 			throw new BadRequestException(err);
 		}
 	}
-
 	public async login(input: LoginInput): Promise<Member> {
 		const { memberNick, memberPassword } = input;
 		const response: Member = await this.memberModel
@@ -36,7 +36,6 @@ export class MemberService {
 			throw new InternalServerErrorException(Message.BLOCKED_USER);
 		}
 
-		// TODO: Compare passwords
 		const isMatch = memberPassword === response.memberPassword;
 		if (!isMatch) throw new InternalServerErrorException(Message.WRONG_PASSWORD);
 
