@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
+	app.useGlobalPipes(new ValidationPipe());
 	await app.listen(process.env.PORT_API ?? 3000);
 }
 bootstrap();
-console.log(' NODE_ENV =', process.env.NODE_ENV);
-console.log(' MONGO_PROD =', process.env.MONGO_PROD);
