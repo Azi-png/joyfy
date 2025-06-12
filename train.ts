@@ -1,4 +1,15 @@
-/** */ /** */ /** */ /** */ /** */ /** */ /** */ /** */
+/** */ /** */ /** */ /** */ /** */ /** */ /** */
+
+/**ZL-TASK:
+
+Shunday function yozing, u parametrda berilgan stringni kebab casega otkazib qaytarsin. Bosh harflarni kichik harflarga ham otkazsin.
+MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab” */
+
+function stringToKebab(str: string): string {
+	return str.toLowerCase().trim().split(/\s+/).join('-');
+}
+console.log(stringToKebab('I love Kebab'));
+
 /**TASK ZM:
 
 Shunday function yozing, va bu function parametr
@@ -10,11 +21,11 @@ MASALAN: reverseInteger(123456789); return 987654321;
 Yuqoridagi misolda, function kiritilgan raqamlarni orqasiga
 o'girib (reverse) qilib qaytarmoqda. */
 
-function reverseInteger(num: number): number {
-	return Number(num.toString().split('').reverse().join(''));
-}
+// function reverseInteger(num: number): number {
+// 	return Number(num.toString().split('').reverse().join(''));
+// }
 
-console.log(reverseInteger(123456789));
+// console.log(reverseInteger(123456789));
 
 /*TASK  :
 
