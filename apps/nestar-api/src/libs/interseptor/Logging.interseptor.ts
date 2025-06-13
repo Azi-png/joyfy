@@ -9,6 +9,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
 	public intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 		const recordTime = Date.now();
+
 		const requestType = context.getType<GqlContextType>();
 
 		if (requestType === 'http') {
@@ -16,6 +17,7 @@ export class LoggingInterceptor implements NestInterceptor {
 		} else if (requestType === 'graphql') {
 			/* (1) Print Request */
 			const gqlContext = GqlExecutionContext.create(context);
+
 			this.logger.log(`${this.stringify(gqlContext.getContext().req.body)}`, 'REQUEST');
 		}
 
@@ -30,7 +32,6 @@ export class LoggingInterceptor implements NestInterceptor {
 	}
 
 	private stringify(context: ExecutionContext): string {
-		console.log(typeof context);
 		return JSON.stringify(context).slice(0, 75);
 	}
 }
