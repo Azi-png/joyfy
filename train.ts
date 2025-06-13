@@ -1,14 +1,28 @@
-/** */ /** */ /** */ /** */ /** */ /** */ /** */
+/** */ /** */ /** */ /** */ /** */ /** */
+
+/** TASK ZN:
+
+Shunday function yozing, uni array va number parametri bo'lsin.
+Function'ning vazifasi ikkinchi parametr'da berilgan raqam, birinchi
+array parametr'ning indeksi bo'yicha hisoblanib, shu indeksgacha bo'lgan
+raqamlarni indeksdan tashqarida bo'lgan raqamlar bilan o'rnini
+almashtirib qaytarsin.
+
+MASALAN: rotateArray([1, 2, 3, 4, 5, 6], 3); return [5, 6, 1, 2, 3, 4];*/
+function rotateArray(arr, index) {
+	return arr.slice(index).concat(arr.slice(0, index));
+}
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 3));
 
 /**ZL-TASK:
 
 Shunday function yozing, u parametrda berilgan stringni kebab casega otkazib qaytarsin. Bosh harflarni kichik harflarga ham otkazsin.
 MASALAN: stringToKebab(“I love Kebab”) return “i-love-kebab” */
 
-function stringToKebab(str: string): string {
-	return str.toLowerCase().trim().split(/\s+/).join('-');
-}
-console.log(stringToKebab('I love Kebab'));
+// function stringToKebab(str: string): string {
+// 	return str.toLowerCase().trim().split(/\s+/).join('-');
+// }
+// console.log(stringToKebab('I love Kebab'));
 
 /**TASK ZM:
 
