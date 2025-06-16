@@ -13,6 +13,7 @@ export class RolesGuard implements CanActivate {
 	async canActivate(context: ExecutionContext | any): Promise<boolean> {
 		const roles = this.reflector.get<string[]>('roles', context.getHandler());
 		if (!roles) return true;
+		//Agar bu endpointda hech qanday @Roles() dekoratori yo‘q bo‘lsa, ya'ni hech qanday rollar belgilanmagan bo‘lsa, foydalanuvchiga ruxsat beriladi.
 
 		console.info(`--- @guard() Authentication [RolesGuard]: ${roles} ---`);
 
@@ -24,6 +25,7 @@ export class RolesGuard implements CanActivate {
 			const token = bearerToken.split(' ')[1],
 				authMember = await this.authService.verifyToken(token),
 				hasRole = () => roles.indexOf(authMember.memberType) > -1,
+				//roles.indexOf('Admin') = 0, va 0 > -1 = true.
 				hasPermission: boolean = hasRole();
 
 			if (!authMember || !hasPermission) throw new ForbiddenException(Message.ONLY_SPECIFIC_ROLES_ALLOWED);
