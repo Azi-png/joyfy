@@ -65,9 +65,12 @@ export class MemberService {
 			)
 			.exec();
 
+		console.log('result', result);
+
 		if (!result) throw new InternalServerErrorException(Message.UPLOAD_FAILED);
 
 		result.accessToken = await this.authService.createToken(result);
+		//result desam tokenni korsatmaydi, chunki schemada yoqda
 		return result;
 	}
 
@@ -80,7 +83,7 @@ export class MemberService {
 		};
 
 		const targetMember = await this.memberModel.findOne(search).lean().exec();
-		//lean qilsak kksiz narsalarni olib tashlar ekan
+		//lean qilsak kksiz narsalarni olib tashlar ekan, yani update save degan methodlarni.
 		if (!targetMember) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
 
 		if (memberId) {
@@ -89,6 +92,7 @@ export class MemberService {
 			if (newView) {
 				await this.memberModel.findOneAndUpdate(search, { $inc: { memberViews: 1 } }, { new: true }).exec();
 				targetMember.memberViews++;
+				//leandagi update tushib qolgani un databasega qayta yozmaydi shunga yana ++ qilyapmiz.
 			}
 		}
 
@@ -101,6 +105,7 @@ export class MemberService {
 		const sort: T = { [input?.sort ?? 'createdAt']: input?.direction ?? Direction.DESC };
 
 		if (text) match.memberNick = { $regex: new RegExp(text, 'i') };
+		//Agar text bo‘lsa, matchga yangi shart qo‘shiladi:
 		console.log('match:', match);
 
 		const result = await this.memberModel

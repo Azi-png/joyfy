@@ -54,7 +54,7 @@ export class MemberResolver {
 		@Args('input') input: MemberUpdate,
 		@AuthMember('_id') memberId: ObjectId,
 	): Promise<Member> {
-		console.log('Mutation: updateMember');
+		console.log('input', input);
 		delete input._id;
 		return await this.memberService.updateMember(memberId, input);
 	}
@@ -134,6 +134,7 @@ export class MemberResolver {
 		console.log('Mutation: imagesUploader');
 
 		const uploadedImages = [];
+		console.log('uploadedImages', uploadedImages);
 		const promisedList = files.map(async (img: Promise<FileUpload>, index: number): Promise<Promise<void>> => {
 			try {
 				const { filename, mimetype, encoding, createReadStream } = await img;
@@ -154,12 +155,15 @@ export class MemberResolver {
 				if (!result) throw new Error(Message.UPLOAD_FAILED);
 
 				uploadedImages[index] = url;
+				console.log('url', url);
 			} catch (err) {
 				console.log('Error, file missing!');
 			}
 		});
 
 		await Promise.all(promisedList);
+		console.log('4444', promisedList);
+		console.log(uploadedImages);
 		return uploadedImages;
 	}
 }
