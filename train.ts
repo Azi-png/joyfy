@@ -1,5 +1,20 @@
-/** */ /** */ /** */ /** */ /** */
+/** */ /** */ /** */ /** */
+/**Shunday function yozing, u 2 ta array parametr qabul qilsin.
+Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
+(ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
 
+MASALAN:
+areArraysEqual([1, 2, 3], [3, 1, 2]) // true
+areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // true
+areArraysEqual([1, 2, 3], [4, 1, 2]) // false */
+
+function areArraysEqual(a, b) {
+	return a.length === b.length && a.sort().toString() === b.sort().toString();
+}
+
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1]));
+console.log(areArraysEqual([1, 2, 2], [2, 1, 2]));
 /** 
  * ZO-TASK:
 
@@ -7,19 +22,19 @@ Shunday function yozing, u parametrdagi string ichidagi qavslar miqdori balansda
 MASALAN: areParenthesesBalanced("string()ichida(qavslar)soni()balansda") return true
 */
 
-function areParenthesesBalanced(str: string): boolean {
-	let count = 0;
-	for (const char of str) {
-		if (char === '(') count++;
-		else if (char === ')') {
-			if (count === 0) return false;
-			count--;
-		}
-	}
-	return count === 0;
-}
-console.log(areParenthesesBalanced('string()ichida(qavslar)soni()balansda'));
-console.log(areParenthesesBalanced('xato(()))'));
+// function areParenthesesBalanced(str: string): boolean {
+// 	let count = 0;
+// 	for (const char of str) {
+// 		if (char === '(') count++;
+// 		else if (char === ')') {
+// 			if (count === 0) return false;
+// 			count--;
+// 		}
+// 	}
+// 	return count === 0;
+// }
+// console.log(areParenthesesBalanced('string()ichida(qavslar)soni()balansda'));
+// console.log(areParenthesesBalanced('xato(()))'));
 
 /** TASK ZN:
 
