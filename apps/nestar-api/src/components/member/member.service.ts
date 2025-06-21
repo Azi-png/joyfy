@@ -98,6 +98,10 @@ export class MemberService {
 				targetMember.memberViews++;
 				//leandagi update tushib qolgani un databasega qayta yozmaydi shunga yana ++ qilyapmiz.
 			}
+
+			// meLiked
+			const likeInput = { memberId: memberId, likeRefId: targetId, likeGroup: LikeGroup.MEMBER };
+			targetMember.meLiked = await this.likeService.checkLikeExistence(likeInput);
 		}
 
 		return targetMember;
