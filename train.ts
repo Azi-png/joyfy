@@ -1,4 +1,31 @@
-/** */ /** */ /** */ /** */
+/** */ /** */ /** */
+/**TASK ZQ:
+
+Shunday function yozing, bu function berilgan array parametr
+ichida ikki marotaba yoki undan ko'p takrorlangan sonlarni alohida
+array'da yagonadan qaytarsin qaytarsin.
+
+MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4]; */
+
+function findDuplicates(arr: number[]): number[] {
+	const seen: { [key: number]: boolean } = {};
+	const duplicates: number[] = [];
+
+	for (const num of arr) {
+		if (seen[num]) {
+			if (!duplicates.includes(num)) {
+				duplicates.push(num);
+			}
+		} else {
+			seen[num] = true;
+		}
+	}
+
+	return duplicates;
+}
+
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4]));
+
 /**Shunday function yozing, u 2 ta array parametr qabul qilsin.
 Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
 (ya'ni, ularning barcha elementlari bir xil bo'lishini) tekshirishingiz kerak.
@@ -8,13 +35,13 @@ areArraysEqual([1, 2, 3], [3, 1, 2]) // true
 areArraysEqual([1, 2, 3], [3, 1, 2, 1]) // true
 areArraysEqual([1, 2, 3], [4, 1, 2]) // false */
 
-function areArraysEqual(a, b) {
-	return a.length === b.length && a.sort().toString() === b.sort().toString();
-}
+// function areArraysEqual(a, b) {
+// 	return a.length === b.length && a.sort().toString() === b.sort().toString();
+// }
 
-console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
-console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1]));
-console.log(areArraysEqual([1, 2, 2], [2, 1, 2]));
+// console.log(areArraysEqual([1, 2, 3], [3, 1, 2]));
+// console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1]));
+// console.log(areArraysEqual([1, 2, 2], [2, 1, 2]));
 /** 
  * ZO-TASK:
 
