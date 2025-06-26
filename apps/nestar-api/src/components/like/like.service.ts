@@ -44,14 +44,17 @@ export class LikeService {
 	public async getFavoriteProperties(memberId: ObjectId, input: OrdinaryInquiry): Promise<Properties> {
 		const { page, limit } = input;
 		const match: T = { likeGroup: LikeGroup.PROPERTY, memberId: memberId };
+		//"Shu odam yoqtirgan uylarnigina olib kel."
 
 		const data: T = await this.likeModel
 			.aggregate([
-				{ $match: match },
-				{ $sort: { updatedAt: -1 } },
+				{ $match: match }, //Yoqtirilganlar ichidan uylar (PROPERTY) va shu odamga tegishlilarini oladi.
+
+				{ $sort: { updatedAt: -1 } }, //eng yangi yoqtirganlar avval chiqadi.
 				{
 					$lookup: {
-						from: 'properties',
+						//uyni olib kelish
+						from: 'properties', // properties collectionga boradi, uni id si bilan like ref id bilan solishtiradi mos klesa fav properti nomi bilan olib ke;adi
 						localField: 'likeRefId',
 						foreignField: '_id',
 						as: 'favoriteProperty',
@@ -60,10 +63,13 @@ export class LikeService {
 				{ $unwind: '$favoriteProperty' },
 				{
 					$facet: {
+						//natijani ikkiga bo'lish
 						list: [
+							// asosiy royhat
+
 							{ $skip: (page - 1) * limit },
-							{ $limit: limit },
-							lookupFavorite,
+							{ $limit: limit }, // bu sahifalash
+							lookupFavorite, // memebrs collga borib osha propertyni egasini malumotini apkelavalamiz.
 							{ $unwind: '$favoriteProperty.memberData' },
 						],
 						metaCounter: [{ $count: 'total' }],
@@ -71,10 +77,12 @@ export class LikeService {
 				},
 			])
 			.exec();
-
+		//“Bo‘sh idish tayyorlaymiz: ro‘yxat + umumiy soni bilan”
 		const result: Properties = { list: [], metaCounter: data[0].metaCounter };
+		// betta listni ichida 3ta narsa bor, 1-like hujjat, 2- qaysi propertyga bosilgani,3- osha propertyni egasi, lekin bizga hammasi kkmas bizga fqat propertyni ozi kk , shunga map qilib ichidan favourite propertyni ajratib olib uni resultga yozyapmiz ekan.
 		result.list = data[0].list.map((ele) => ele.favoriteProperty);
 
 		return result;
+		//ohirida modify qilingan resultni juborvoramiz.
 	}
 }

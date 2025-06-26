@@ -80,12 +80,14 @@ export class FollowService {
 							{ $skip: (page - 1) * limit },
 							{ $limit: limit },
 							lookupAuthMemberLiked(memberId, '$followingId'),
+							//🔴 Bu chunki like bu yerda “user”ga bosilgan, “follow” hujjatiga emas!
 							lookupAuthMemberFollowed({
 								followerId: memberId,
 								followingId: '$followingId',
 							}),
-							// meLiked
-							// meFollowed
+							//buyerda argument bitta object sifatida berilyotgani un uni typini alohida yozyapmiz
+							//Parametrlar ko‘payganda va murakkablashganda object argument shaklida qabul qilish kodning bardoshli, o‘qilishi oson va kam xatolik bilan bo‘lishini ta’minlaydi
+
 							lookupFollowingData,
 							{ $unwind: '$followingData' },
 						],
@@ -116,13 +118,13 @@ export class FollowService {
 						list: [
 							{ $skip: (page - 1) * limit },
 							{ $limit: limit },
-							lookupAuthMemberLiked(memberId, '$followedId'),
+							lookupAuthMemberLiked(memberId, '$followerId'),
 							lookupAuthMemberFollowed({
 								followerId: memberId,
-								followingId: '$followedId',
+								followingId: '$followerId',
 							}),
 							// meLiked
-							// meFollowed
+							// buyerda follower Ali followingId esa men, shunga memberId followingIdga yozilish kk emasmikan
 							lookupFollowerData,
 							{ $unwind: '$followerData' },
 						],

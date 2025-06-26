@@ -1,4 +1,33 @@
-/** */ /** */ /** */
+/** */ /** */ /**TASK ZR:
+
+Shunday function yozing, bu function,
+berilgan parametr string tarkibidagi raqam va sonlarni
+sanab object sifatida qaytarsin.
+
+MASALAN: countNumberAndLetters(“string152%\¥”); return {number: 3, letter: 6}; */
+
+function countNumberAndLetters(input: string): { number: number; letter: number } {
+	let numberCount = 0;
+	let letterCount = 0;
+
+	for (let i = 0; i < input.length; i++) {
+		const char = input[i];
+
+		if (char >= '0' && char <= '9') {
+			numberCount++;
+		} else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+			letterCount++;
+		}
+	}
+
+	return {
+		number: numberCount,
+		letter: letterCount,
+	};
+}
+
+console.log(countNumberAndLetters('string152%\\¥'));
+
 /**TASK ZQ:
 
 Shunday function yozing, bu function berilgan array parametr
@@ -7,24 +36,24 @@ array'da yagonadan qaytarsin qaytarsin.
 
 MASALAN: findDuplicates([1,2,3,4,5,4,3,4]); return [3, 4]; */
 
-function findDuplicates(arr: number[]): number[] {
-	const seen: { [key: number]: boolean } = {};
-	const duplicates: number[] = [];
+// function findDuplicates(arr: number[]): number[] {
+// 	const seen: { [key: number]: boolean } = {};
+// 	const duplicates: number[] = [];
 
-	for (const num of arr) {
-		if (seen[num]) {
-			if (!duplicates.includes(num)) {
-				duplicates.push(num);
-			}
-		} else {
-			seen[num] = true;
-		}
-	}
+// 	for (const num of arr) {
+// 		if (seen[num]) {
+// 			if (!duplicates.includes(num)) {
+// 				duplicates.push(num);
+// 			}
+// 		} else {
+// 			seen[num] = true;
+// 		}
+// 	}
 
-	return duplicates;
-}
+// 	return duplicates;
+// }
 
-console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4]));
+// console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4]));
 
 /**Shunday function yozing, u 2 ta array parametr qabul qilsin.
 Siz bu ikki arrayning qiymatlari o'xshash bo'lishini 
