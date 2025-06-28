@@ -1,4 +1,29 @@
-/** */ /** */ /**TASK ZR:
+/** */ /**TASK ZS:
+
+Shunday function yozing, bu function parametrdagi array ichida
+bir marotaba takrorlangan element'ni qaytarsin
+
+MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4; */
+
+function singleNumber(nums: number[]): number {
+	const count: Record<number, number> = {};
+
+	for (const num of nums) {
+		count[num] = (count[num] || 0) + 1;
+	}
+
+	for (const num of nums) {
+		if (count[num] === 1) {
+			return num;
+		}
+	}
+
+	throw new Error('Bitta marta uchragan element topilmadi.');
+}
+
+console.log(singleNumber([4, 2, 1, 2, 1]));
+
+/**TASK ZR:
 
 Shunday function yozing, bu function,
 berilgan parametr string tarkibidagi raqam va sonlarni
@@ -6,27 +31,27 @@ sanab object sifatida qaytarsin.
 
 MASALAN: countNumberAndLetters(“string152%\¥”); return {number: 3, letter: 6}; */
 
-function countNumberAndLetters(input: string): { number: number; letter: number } {
-	let numberCount = 0;
-	let letterCount = 0;
+// function countNumberAndLetters(input: string): { number: number; letter: number } {
+// 	let numberCount = 0;
+// 	let letterCount = 0;
 
-	for (let i = 0; i < input.length; i++) {
-		const char = input[i];
+// 	for (let i = 0; i < input.length; i++) {
+// 		const char = input[i];
 
-		if (char >= '0' && char <= '9') {
-			numberCount++;
-		} else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
-			letterCount++;
-		}
-	}
+// 		if (char >= '0' && char <= '9') {
+// 			numberCount++;
+// 		} else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+// 			letterCount++;
+// 		}
+// 	}
 
-	return {
-		number: numberCount,
-		letter: letterCount,
-	};
-}
+// 	return {
+// 		number: numberCount,
+// 		letter: letterCount,
+// 	};
+// }
 
-console.log(countNumberAndLetters('string152%\\¥'));
+// console.log(countNumberAndLetters('string152%\\¥'));
 
 /**TASK ZQ:
 
