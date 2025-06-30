@@ -1,27 +1,49 @@
-/** */ /**TASK ZS:
+/**
+ * TASK ZT:
+
+Shunday function yozing, bu function parametrdagi string ichida
+bir marotabadan ortiq qaytarilmagan birinchi harf indeksini qaytarsin
+
+MASALAN: firstUniqueCharIndex(“stamp”); return 0;
+
+Yuqoridagi misolda, 'stamp' so'zi tarkibida barcha harflar bir marotabadan
+ortiq takrorlanmagan, lekin shartga muvofiq, birinchi topilgan harf indeksi qaytarilmoqda.
+ */
+
+function firstUniqueCharIndex(str: string): number {
+	for (let i = 0; i < str.length; i++) {
+		if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+			return i;
+		}
+	}
+	return -1;
+}
+console.log(firstUniqueCharIndex('stamp'));
+
+/**TASK ZS:
 
 Shunday function yozing, bu function parametrdagi array ichida
 bir marotaba takrorlangan element'ni qaytarsin
 
 MASALAN: singleNumber([4, 2, 1, 2, 1]); return 4; */
 
-function singleNumber(nums: number[]): number {
-	const count: Record<number, number> = {};
+// function singleNumber(nums: number[]): number {
+// 	const count: Record<number, number> = {};
 
-	for (const num of nums) {
-		count[num] = (count[num] || 0) + 1;
-	}
+// 	for (const num of nums) {
+// 		count[num] = (count[num] || 0) + 1;
+// 	}
 
-	for (const num of nums) {
-		if (count[num] === 1) {
-			return num;
-		}
-	}
+// 	for (const num of nums) {
+// 		if (count[num] === 1) {
+// 			return num;
+// 		}
+// 	}
 
-	throw new Error('Bitta marta uchragan element topilmadi.');
-}
+// 	throw new Error('Bitta marta uchragan element topilmadi.');
+// }
 
-console.log(singleNumber([4, 2, 1, 2, 1]));
+// console.log(singleNumber([4, 2, 1, 2, 1]));
 
 /**TASK ZR:
 
