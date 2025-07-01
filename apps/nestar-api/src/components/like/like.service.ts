@@ -48,7 +48,7 @@ export class LikeService {
 
 		const data: T = await this.likeModel
 			.aggregate([
-				{ $match: match }, //Yoqtirilganlar ichidan uylar (PROPERTY) va shu odamga tegishlilarini oladi.
+				{ $match: match }, //likelar ichidan uylar (PROPERTY) va shu odamga tegishlilarini oladi.
 
 				{ $sort: { updatedAt: -1 } }, //eng yangi yoqtirganlar avval chiqadi.
 				{
@@ -60,6 +60,7 @@ export class LikeService {
 						as: 'favoriteProperty',
 					},
 				},
+
 				{ $unwind: '$favoriteProperty' },
 				{
 					$facet: {
