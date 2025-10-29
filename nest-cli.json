@@ -1,22 +1,22 @@
 {
 	"$schema": "https://json.schemastore.org/nest-cli",
 	"collection": "@nestjs/schematics",
-	"sourceRoot": "apps/nestar-api/src",
+	"sourceRoot": "apps/joyfy-api/src",
 	"compilerOptions": {
 		"deleteOutDir": true,
 		"webpack": true,
-		"tsConfigPath": "apps/nestar-api/tsconfig.app.json"
+		"tsConfigPath": "apps/joyfy-api/tsconfig.app.json"
 	},
 	"monorepo": true,
-	"root": "apps/nestar-api",
+	"root": "apps/joyfy-api",
 	"projects": {
-		"nestar-api": {
+		"joyfy-api": {
 			"type": "application",
-			"root": "apps/nestar-api",
+			"root": "apps/joyfy-api",
 			"entryFile": "main",
-			"sourceRoot": "apps/nestar-api/src",
+			"sourceRoot": "apps/joyfy-api/src",
 			"compilerOptions": {
-				"tsConfigPath": "apps/nestar-api/tsconfig.app.json"
+				"tsConfigPath": "apps/joyfy-api/tsconfig.app.json"
 			}
 		},
 		"nestar-batch": {
