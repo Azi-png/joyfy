@@ -6,15 +6,32 @@ services:
     restart: always
     image: node:20.10.0
     ports:
-      - 3003:3000
+      - 4001:3007
     volumes:
-      - ./:/usr/src/app
-    working_dir: /usr/src/app
+      - ./:/usr/src/joyfy
+    working_dir: /usr/src/joyfy
 
     networks:
-      - reja_network
+      - monorepo-network
 
-    command: bash -c "npm install && npm run dev"
+    # FOR PRODUCTION
+    command: bash -c "npm install && npm run build && npm run start:prod"
+
+  joyfy-batch:
+    container_name: joyfy-batch
+    restart: unless-stopped
+    image: node:20.10.0
+    ports:
+      - 4002:3008
+    volumes:
+      - ./:/usr/src/joyfy
+    working_dir: /usr/src/joyfy
+
+    networks:
+      - monorepo-network
+
+    # FOR PRODUCTION
+    command: bash -c "npm install && npm run build && npm run start:prod:batch"
 
 networks:
   monorepo-network:

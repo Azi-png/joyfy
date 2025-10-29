@@ -19,13 +19,13 @@
 				"tsConfigPath": "apps/joyfy-api/tsconfig.app.json"
 			}
 		},
-		"nestar-batch": {
+		"joyfy-batch": {
 			"type": "application",
-			"root": "apps/nestar-batch",
+			"root": "apps/joyfy-batch",
 			"entryFile": "main",
-			"sourceRoot": "apps/nestar-batch/src",
+			"sourceRoot": "apps/joyfy-batch/src",
 			"compilerOptions": {
-				"tsConfigPath": "apps/nestar-batch/tsconfig.app.json"
+				"tsConfigPath": "apps/joyfy-batch/tsconfig.app.json"
 			}
 		}
 	}
