@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   joyfy-api:
     container_name: joyfy-api
