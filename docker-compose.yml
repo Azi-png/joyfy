@@ -1,4 +1,4 @@
- services:
+services:
   joyfy-api:
     container_name: joyfy-api
     restart: always
